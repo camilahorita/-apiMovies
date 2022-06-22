@@ -4,3 +4,5 @@ const app = express();
 const PORT = 3333;
 
 app.listen(PORT, () => {console.log(`App running in the PORT ${PORT}`)});
+
+app.use(express.json());
