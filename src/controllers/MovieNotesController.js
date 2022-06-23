@@ -25,6 +25,31 @@ class MovieNotesController {
     response.json()
   }
 
+  async delete(request, response) {
+
+    const { id } = request.params;
+    
+    await knex("movieNotes").where({id}).delete();
+
+    return response.json();
+  }
+
+  async show (request, response) {
+    const {id} = request.params;
+
+    const movie = await knex("movieNotes").where({id}).first();
+    const tags = await knex("movieTags").where({note_id: id}).orderBy("name");
+
+    if(!movie){
+      throw new AppErrors("O filme não existee");
+    }
+
+    return response.json({
+      ...movie,
+      tags
+    });   
+  }
+
 }
 
 module.exports = MovieNotesController;

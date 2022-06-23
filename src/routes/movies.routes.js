@@ -5,6 +5,10 @@ const movieNotesController = new MovieNotesController();
 
 const moviesRoutes = Router();
 
-moviesRoutes.use("/", movieNotesController.create);
+moviesRoutes.post("/", movieNotesController.create);
+moviesRoutes.delete("/:id", movieNotesController.delete);
+moviesRoutes.get("/:id", movieNotesController.show);
+
 
 module.exports = moviesRoutes;
+
