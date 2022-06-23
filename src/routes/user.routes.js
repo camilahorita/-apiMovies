@@ -4,8 +4,9 @@ const userRouter = Router();
 
 const UserController = require("../controllers/UserController");
 
-const usersController = UserController();
-
-userRouter.post("/",usersController.create );
+const usersController = new UserController();
+     
+userRouter.post("/", usersController.create);
+userRouter.put("/:id", usersController.update);
 
 module.exports = userRouter;
